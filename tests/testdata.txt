@@ -1,0 +1,50 @@
+[
+  {
+    "AirdropID": 1,
+    "NodeID": "0x1234567890123456789012345678901234567890",
+    "RecipientHash":
+      "0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890",
+    "RewardAmount": "1000000000000000000",
+    "MerkleProof": [
+      "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "Proof2"
+    ]
+  },
+  {
+    "AirdropID": 1,
+    "NodeID": "0x2345678901234567890123456789012345678901",
+    "RecipientHash":
+      "0xbcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890a",
+    "RewardAmount": "2000000000000000000",
+    "MerkleProof": [
+      "0x2345678901abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "Proof2"
+    ]
+  },
+  {
+    "AirdropID": 2,
+    "NodeID": "0x3456789012345678901234567890123456789012",
+    "RecipientHash":
+      "0xcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890ab",
+    "RewardAmount": "3000000000000000000",
+    "MerkleProof": [
+      "0x3456789012abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "Proof2"
+    ]
+  }
+]
+
+[
+    {
+      "AirdropID": 1,
+      "NodeID": "0x1234567890123456789012345678901234567890",
+    },
+    {
+      "AirdropID": 1,
+      "NodeID": "0x2345678901234567890123456789012345678901",
+    },
+    {
+      "AirdropID": 2,
+      "NodeID": "0x3456789012345678901234567890123456789012",
+    }
+  ]

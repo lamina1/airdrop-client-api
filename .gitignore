@@ -1,0 +1,49 @@
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# AWS SAM build artifacts
+.aws-sam/
+.sar/
+
+# Serverless Framework build artifacts
+.serverless/
+
+# Dotenv files (if any)
+.env
+.env.*
+
+# Temporary files
+*.tmp
+*.temp
+
+# Logs
+logs/
+*.log
+
+# MacOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Idea IDEs
+.idea/
+
+# Lambda build artifacts
+bootstrap
+*.zip
+
+# Ignore build directories in subprojects
+**/build/
+**/dist/
+
+# Ignore compiled files
+*.tsbuildinfo
+
+# AWS credentials
+.aws/
+
+# Test coverage
+coverage/
