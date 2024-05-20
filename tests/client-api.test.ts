@@ -1,6 +1,6 @@
-import * as adminClient from '../../src/admin';
-import * as publicClient from '../../src/public';
-import { RewardData, RewardKey } from '../../src/admin';
+import * as adminClient from '../src/admin';
+import * as publicClient from '../src/public';
+import { RewardData, RewardKey } from '../src/api-calls/common';
 
 const sampleRewards: RewardData[] = [
   {
