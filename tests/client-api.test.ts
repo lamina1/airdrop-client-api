@@ -1,5 +1,5 @@
-import * as adminClient from '../src/admin';
-import * as publicClient from '../src/public';
+import { adminApi } from '../index';
+import { publicApi } from '../index';
 import { RewardData, RewardKey } from '../src/api-calls/common';
 
 const sampleRewards: RewardData[] = [
@@ -54,39 +54,39 @@ describe('Unified Test Suite for Admin and Public APIs', () => {
       AirdropID: reward.AirdropID,
       NodeID: reward.NodeID
     }));
-    let response = await adminClient.deleteRewards(rewardKeys);
+    let response = await adminApi.deleteRewards(rewardKeys);
     if (!response.success) {
       throw new Error(response.error);
     }
   });
 
   test('Admin API - Add rewards', async () => {
-    const response = await adminClient.addRewards(sampleRewards);
+    const response = await adminApi.addRewards(sampleRewards);
     expect(!response.error);
     expect(response.success);
   });
 
   test('Admin API - Get rewards', async () => {
     // Get rewards
-    let response = await adminClient.getRewards(sampleKeys);
+    let response = await adminApi.getRewards(sampleKeys);
     expect(response.success);
     expect(response.rewards).toEqual(expect.arrayContaining(sampleRewards));
 
-    response = await publicClient.getRewards(sampleKeys);
+    response = await publicApi.getRewards(sampleKeys);
     expect(!response.success);
     expect(!response.rewards);
     expect(response.error).toBe('No rewards found');
 
-    response = await adminClient.putPublic(1, true);
+    response = await adminApi.putPublic(1, true);
     expect(response.success);
-    response = await adminClient.putPublic(2, true);
+    response = await adminApi.putPublic(2, true);
     expect(response.success);
 
     for (const reward of sampleRewards) {
       reward.IsPublic = true;
     }
 
-    response = await publicClient.getRewards(sampleKeys);
+    response = await publicApi.getRewards(sampleKeys);
     expect(response.success);
     expect(response.rewards).toEqual(expect.arrayContaining(sampleRewards));
     expect(!response.error);
@@ -95,7 +95,7 @@ describe('Unified Test Suite for Admin and Public APIs', () => {
   test('Public API - Get rewards by recipient hash', async () => {
     const recipientHash =
       '0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890';
-    let response = await adminClient.getRecipient(recipientHash);
+    let response = await adminApi.getRecipient(recipientHash);
     expect(response.success);
     expect(!response.error);
 
@@ -104,7 +104,7 @@ describe('Unified Test Suite for Admin and Public APIs', () => {
     );
     expect(response.rewards).toEqual(expect.arrayContaining(expectedRewards));
 
-    response = await publicClient.getRecipient(recipientHash);
+    response = await publicApi.getRecipient(recipientHash);
     expect(response.success);
     expect(!response.error);
     expect(response.rewards).toEqual(expect.arrayContaining(expectedRewards));
@@ -112,7 +112,7 @@ describe('Unified Test Suite for Admin and Public APIs', () => {
 
   test('Admin API - Get rewards by airdrop ID', async () => {
     const airdropID = 1;
-    const response = await adminClient.getAirdrop(airdropID);
+    const response = await adminApi.getAirdrop(airdropID);
     expect(response.success);
     expect(!response.error);
 
@@ -124,7 +124,7 @@ describe('Unified Test Suite for Admin and Public APIs', () => {
 
   test('Admin API - Get reward count by airdrop ID', async () => {
     const airdropID = 1;
-    const response = await adminClient.getRewardsCount(airdropID);
+    const response = await adminApi.getRewardsCount(airdropID);
     expect(response.success);
     expect(!response.error);
 
@@ -136,7 +136,7 @@ describe('Unified Test Suite for Admin and Public APIs', () => {
 
   test('Admin API - Get total reward amount by airdrop ID', async () => {
     const airdropID = 1;
-    const response = await adminClient.getRewardsTotal(airdropID);
+    const response = await adminApi.getRewardsTotal(airdropID);
     expect(response.success);
     expect(!response.error);
 
@@ -155,30 +155,30 @@ describe('Unified Test Suite for Admin and Public APIs', () => {
       AirdropID: reward.AirdropID,
       NodeID: reward.NodeID
     }));
-    const response = await adminClient.deleteRewards(rewardKeys);
+    const response = await adminApi.deleteRewards(rewardKeys);
     expect(response.success);
     expect(!response.error);
 
-    const getResponse = await adminClient.getRewards(rewardKeys);
+    const getResponse = await adminApi.getRewards(rewardKeys);
     expect(getResponse.success);
     expect(!getResponse.rewards);
   });
   jest.setTimeout(30000);
 
   test('Admin API - Set maintenance mode', async () => {
-    let response = await adminClient.putMaintenance(true);
+    let response = await adminApi.putMaintenance(true);
     expect(response.success);
     expect(!response.error);
     await new Promise((r) => setTimeout(r, 5000));
 
     // Verify that public API calls are restricted during maintenance mode
-    const publicResponse = await publicClient.getRewards(sampleKeys);
+    const publicResponse = await publicApi.getRewards(sampleKeys);
     expect(!publicResponse.success);
     expect(publicResponse.error).toBe(
       'Airdrop service unavailable due to maintenance.'
     );
 
-    response = await adminClient.putMaintenance(false);
+    response = await adminApi.putMaintenance(false);
     expect(response.success);
     expect(!response.error);
   });
@@ -189,7 +189,7 @@ describe('Unified Test Suite for Admin and Public APIs', () => {
       AirdropID: reward.AirdropID,
       NodeID: reward.NodeID
     }));
-    await adminClient.deleteRewards(rewardKeys);
-    const response = await adminClient.putMaintenance(false);
+    await adminApi.deleteRewards(rewardKeys);
+    const response = await adminApi.putMaintenance(false);
   });
 });
