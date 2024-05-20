@@ -37,7 +37,6 @@ bootstrap
 
 # Ignore build directories in subprojects
 **/build/
-**/dist/
 
 # Ignore compiled files
 *.tsbuildinfo
