@@ -21,7 +21,6 @@ export async function getRewards(
   });
 
   const responseData = await response.json();
-
   if (response.status === 200) {
     return {
       success: true,

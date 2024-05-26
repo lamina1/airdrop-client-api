@@ -16,9 +16,13 @@ import {
   GetAirdropResponse
 } from './api-calls/get-airdrop';
 import {
-  getRecipient as getRecipientFunction,
-  GetRecipientResponse
-} from './api-calls/get-recipient';
+  getAddress as getAddressFunction,
+  GetAddressResponse
+} from './api-calls/get-address';
+import {
+  getDiscord as getDiscordFunction,
+  GetDiscordResponse
+} from './api-calls/get-discord';
 import {
   getRewardsCount as getRewardsCountFunction,
   GetRewardsCountResponse
@@ -90,10 +94,14 @@ export async function getAirdrop(
   return getAirdropFunction(ADMIN_API_KEY, ADMIN_API_URL, airdropId);
 }
 
-export async function getRecipient(
-  recipientId: string
-): Promise<GetRecipientResponse> {
-  return getRecipientFunction(ADMIN_API_KEY, ADMIN_API_URL, recipientId);
+export async function getAddress(address: string): Promise<GetAddressResponse> {
+  return getAddressFunction(ADMIN_API_KEY, ADMIN_API_URL, address);
+}
+
+export async function getDiscord(
+  discordId: string
+): Promise<GetDiscordResponse> {
+  return getDiscordFunction(ADMIN_API_KEY, ADMIN_API_URL, discordId);
 }
 
 export async function getRewardsCount(

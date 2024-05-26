@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 import {
-  getRecipient as getRecipientFunction,
-  GetRecipientResponse
-} from './api-calls/get-recipient';
+  getAddress as getAddressFunction,
+  GetAddressResponse
+} from './api-calls/get-address';
 import {
   getRewards as getRewardsFunction,
   GetRewardsResponse
@@ -28,8 +28,6 @@ export async function getRewards(
   return getRewardsFunction(PUBLIC_API_KEY, PUBLIC_API_URL, keys);
 }
 
-export async function getRecipient(
-  recipientId: string
-): Promise<GetRecipientResponse> {
-  return getRecipientFunction(PUBLIC_API_KEY, PUBLIC_API_URL, recipientId);
+export async function getAddress(address: string): Promise<GetAddressResponse> {
+  return getAddressFunction(PUBLIC_API_KEY, PUBLIC_API_URL, address);
 }

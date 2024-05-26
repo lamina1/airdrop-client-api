@@ -5,6 +5,10 @@ export interface GetRecipientResponse {
   error?: string;
 }
 
+/*
+GET RECIPIENT IS DEPRECATED, USE GETREWARDS OR GETDISCORD INSTEAD
+*/
+
 export async function getRecipient(
   apiKey: string,
   apiUrl: string,

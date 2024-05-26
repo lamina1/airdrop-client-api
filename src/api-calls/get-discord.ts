@@ -1,21 +1,24 @@
 import { RewardData } from './common';
-export interface GetAirdropResponse {
+export interface GetDiscordResponse {
   success: boolean;
   rewards?: RewardData[];
   error?: string;
 }
 
-export async function getAirdrop(
+export async function getDiscord(
   apiKey: string,
   apiUrl: string,
-  airdropID: number
-): Promise<GetAirdropResponse> {
-  const response = await fetch(`${apiUrl}/airdrop/${airdropID}`, {
-    method: 'GET',
-    headers: {
-      'x-api-key': apiKey
+  discordId: string
+): Promise<GetDiscordResponse> {
+  const response = await fetch(
+    `${apiUrl}/airdrop/discord/${discordId}/rewards`,
+    {
+      method: 'GET',
+      headers: {
+        'x-api-key': apiKey
+      }
     }
-  });
+  );
 
   const responseData = await response.json();
 
@@ -28,6 +31,11 @@ export async function getAirdrop(
     return {
       success: false,
       error: responseData.error
+    };
+  } else if (response.status === 503) {
+    return {
+      success: false,
+      error: 'Airdrop service unavailable due to maintenance.'
     };
   } else if (response.status === 404) {
     return {

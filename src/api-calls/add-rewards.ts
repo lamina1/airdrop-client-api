@@ -14,16 +14,16 @@ export async function addRewards(
     method: 'POST',
     headers: {
       'x-api-key': apiKey,
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify(rewards),
+    body: JSON.stringify(rewards)
   });
 
   const responseData = await response.json();
 
   if (response.status === 201) {
     return {
-      success: true,
+      success: true
     };
   } else if (response.status === 207) {
     return {
@@ -31,7 +31,7 @@ export async function addRewards(
       missing: responseData.failedRewards.map(
         (fr: { RewardData: RewardData }) => fr.RewardData
       ),
-      error: 'Some rewards failed to be added',
+      error: 'Some rewards failed to be added'
     };
   } else if (response.status === 409) {
     return {
@@ -39,17 +39,17 @@ export async function addRewards(
       missing: responseData.failedRewards.map(
         (fr: { RewardData: RewardData }) => fr.RewardData
       ),
-      error: 'All rewards failed to be added',
+      error: 'All rewards failed to be added'
     };
   } else if (response.status === 400 || response.status === 500) {
     return {
       success: false,
-      error: responseData.error,
+      error: responseData.error
     };
   } else {
     return {
       success: false,
-      error: 'Unexpected error occurred',
+      error: 'Unexpected error occurred'
     };
   }
 }

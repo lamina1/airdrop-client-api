@@ -1,16 +1,16 @@
 import { RewardData } from './common';
-export interface GetAirdropResponse {
+export interface GetAddressResponse {
   success: boolean;
   rewards?: RewardData[];
   error?: string;
 }
 
-export async function getAirdrop(
+export async function getAddress(
   apiKey: string,
   apiUrl: string,
-  airdropID: number
-): Promise<GetAirdropResponse> {
-  const response = await fetch(`${apiUrl}/airdrop/${airdropID}`, {
+  address: string
+): Promise<GetAddressResponse> {
+  const response = await fetch(`${apiUrl}/airdrop/address/${address}/rewards`, {
     method: 'GET',
     headers: {
       'x-api-key': apiKey
@@ -28,6 +28,11 @@ export async function getAirdrop(
     return {
       success: false,
       error: responseData.error
+    };
+  } else if (response.status === 503) {
+    return {
+      success: false,
+      error: 'Airdrop service unavailable due to maintenance.'
     };
   } else if (response.status === 404) {
     return {
