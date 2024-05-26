@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getRecipient = void 0;
+/*
+GET RECIPIENT IS DEPRECATED, USE GETREWARDS OR GETDISCORD INSTEAD
+*/
 async function getRecipient(apiKey, apiUrl, recipientHash) {
     const response = await fetch(`${apiUrl}/airdrop/recipient/${recipientHash}/rewards`, {
         method: 'GET',

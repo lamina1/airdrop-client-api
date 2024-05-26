@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRecipient = exports.getRewards = void 0;
+exports.getAddress = exports.getRewards = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
-const get_recipient_1 = require("./api-calls/get-recipient");
+const get_address_1 = require("./api-calls/get-address");
 const get_rewards_1 = require("./api-calls/get-rewards");
 dotenv_1.default.config();
 const PUBLIC_API_URL = process.env.PUBLIC_API_ENDPOINT || '';
@@ -20,7 +20,7 @@ async function getRewards(keys) {
     return (0, get_rewards_1.getRewards)(PUBLIC_API_KEY, PUBLIC_API_URL, keys);
 }
 exports.getRewards = getRewards;
-async function getRecipient(recipientId) {
-    return (0, get_recipient_1.getRecipient)(PUBLIC_API_KEY, PUBLIC_API_URL, recipientId);
+async function getAddress(address) {
+    return (0, get_address_1.getAddress)(PUBLIC_API_KEY, PUBLIC_API_URL, address);
 }
-exports.getRecipient = getRecipient;
+exports.getAddress = getAddress;

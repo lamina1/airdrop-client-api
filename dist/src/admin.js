@@ -3,13 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.putPublic = exports.putMaintenance = exports.getRewardsTotal = exports.getRewardsCount = exports.getRecipient = exports.getAirdrop = exports.deleteRewards = exports.deleteAirdrop = exports.getRewards = exports.addRewards = void 0;
+exports.putPublic = exports.putMaintenance = exports.getRewardsTotal = exports.getRewardsCount = exports.getDiscord = exports.getAddress = exports.getAirdrop = exports.deleteRewards = exports.deleteAirdrop = exports.getRewards = exports.addRewards = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 const add_rewards_1 = require("./api-calls/add-rewards");
 const delete_airdrop_1 = require("./api-calls/delete-airdrop");
 const delete_rewards_1 = require("./api-calls/delete-rewards");
 const get_airdrop_1 = require("./api-calls/get-airdrop");
-const get_recipient_1 = require("./api-calls/get-recipient");
+const get_address_1 = require("./api-calls/get-address");
+const get_discord_1 = require("./api-calls/get-discord");
 const get_rewards_count_1 = require("./api-calls/get-rewards-count");
 const get_rewards_total_1 = require("./api-calls/get-rewards-total");
 const get_rewards_1 = require("./api-calls/get-rewards");
@@ -44,10 +45,14 @@ async function getAirdrop(airdropId) {
     return (0, get_airdrop_1.getAirdrop)(ADMIN_API_KEY, ADMIN_API_URL, airdropId);
 }
 exports.getAirdrop = getAirdrop;
-async function getRecipient(recipientId) {
-    return (0, get_recipient_1.getRecipient)(ADMIN_API_KEY, ADMIN_API_URL, recipientId);
+async function getAddress(address) {
+    return (0, get_address_1.getAddress)(ADMIN_API_KEY, ADMIN_API_URL, address);
 }
-exports.getRecipient = getRecipient;
+exports.getAddress = getAddress;
+async function getDiscord(discordId) {
+    return (0, get_discord_1.getDiscord)(ADMIN_API_KEY, ADMIN_API_URL, discordId);
+}
+exports.getDiscord = getDiscord;
 async function getRewardsCount(airdropId) {
     return (0, get_rewards_count_1.getRewardsCount)(ADMIN_API_KEY, ADMIN_API_URL, airdropId);
 }

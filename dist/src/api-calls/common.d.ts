@@ -1,7 +1,9 @@
 export interface RewardData {
     AirdropID: number;
     NodeID: string;
-    RecipientHash: string;
+    Address?: string;
+    DiscordID?: string;
+    Salt?: string;
     RewardAmount: string;
     MerkleProof: string[];
     IsPublic: boolean;

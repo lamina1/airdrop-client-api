@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAirdrop = void 0;
-async function getAirdrop(apiKey, apiUrl, airdropID) {
-    const response = await fetch(`${apiUrl}/airdrop/${airdropID}`, {
+exports.getAddress = void 0;
+async function getAddress(apiKey, apiUrl, address) {
+    const response = await fetch(`${apiUrl}/airdrop/address/${address}/rewards`, {
         method: 'GET',
         headers: {
             'x-api-key': apiKey
@@ -21,6 +21,12 @@ async function getAirdrop(apiKey, apiUrl, airdropID) {
             error: responseData.error
         };
     }
+    else if (response.status === 503) {
+        return {
+            success: false,
+            error: 'Airdrop service unavailable due to maintenance.'
+        };
+    }
     else if (response.status === 404) {
         return {
             success: false,
@@ -34,4 +40,4 @@ async function getAirdrop(apiKey, apiUrl, airdropID) {
         };
     }
 }
-exports.getAirdrop = getAirdrop;
+exports.getAddress = getAddress;
