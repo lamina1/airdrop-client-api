@@ -4,6 +4,7 @@ export interface RewardData {
   Address?: string;
   DiscordID?: string;
   Salt?: string;
+  IsDiscord?: boolean;
   RewardAmount: string;
   MerkleProof: string[];
   IsPublic: boolean;
